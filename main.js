@@ -46,10 +46,31 @@ let info=[]
 //     console.log(error)
 //   })
 const getUsers = () => { axios.get(url) .then(response => {  const users = response.data.entries;
-  for(i=0;i<users.length;i++){
-    info.push(users[i])
-  }
-return users
+info=users
+info.map((elem,i)=>{
+  let div=document.getElementById("infocontainer");
+  let apiname=elem.API;
+  let desc=elem.Description
+  let link=elem.Link
+  
+  let td0=document.createElement("td")
+  td0.innerText=i
+  let tr=document.createElement("tr")
+  let td1=document.createElement("td")
+  td1.innerHTML=apiname
+  let td2=document.createElement("td")
+  td2.innerHTML=desc
+  let td3=document.createElement("td")
+  let anch=document.createElement("a")
+  anch.href=link
+  anch.textContent="Show API"
+  anch.target="_blank"
+  td3.append(anch)
+  
+  tr.append(td0,td1,td2,td3)
+  div.append(tr)
+  console.log(link)
+      })
 })
  .catch(error => console.error(error));
 };
@@ -60,27 +81,3 @@ info=Object.keys(person)
 
 console.log(typeof(info))
 
-// info.map((elem,i)=>{
-//   let div=document.getElementById("infocontainer");
-//   let apiname=elem.API;
-//   let desc=elem.Description
-//   let link=elem.Link
-  
-//   let td0=document.createElement("td")
-//   td0.innerText=i
-//   let tr=document.createElement("tr")
-//   let td1=document.createElement("td")
-//   td1.innerHTML=apiname
-//   let td2=document.createElement("td")
-//   td2.innerHTML=desc
-//   let td3=document.createElement("td")
-//   let anch=document.createElement("a")
-//   anch.href=link
-//   anch.textContent="Show API"
-//   anch.target="_blank"
-//   td3.append(anch)
-  
-//   tr.append(td0,td1,td2,td3)
-//   div.append(tr)
-//   console.log(link)
-//       })
